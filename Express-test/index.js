@@ -22,9 +22,11 @@ app.get('/', (req, res) => {
 
 
 const ingredientRoutes = require('./routes/ingredientRoutes')
+const postRoutes = require('./routes/postRoutes')
 const authRoutes = require('./routes/authRoutes');
 
 app.use('/api/ingredients', ingredientRoutes)
+app.use('/api/posts', postRoutes)
 app.use('/api/user', authRoutes);
 
 

@@ -1,6 +1,7 @@
 const User = require('../models/userModel')
 const jwt = require('jsonwebtoken')
 
+const maxAge = 3 * 24 * 60 * 60
 const createToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET_KEY, {
         expiresIn: '3d'
@@ -22,6 +23,7 @@ const login_post = async (req, res) => {
 }
 const signup_post = async (req, res) => {
     const { email, password } = req.body
+    console.log(req.body)
     try{
         const user = await User.signup({ email, password });
         const token = createToken(user._id)

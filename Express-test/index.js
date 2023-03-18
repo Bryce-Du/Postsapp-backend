@@ -3,9 +3,15 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 app.use(express.json())
 app.use(cookieParser())
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type,Authorization'
+  }));
 
 mongoose.connect(process.env.MONGO_URI)
     .then((result) => app.listen(process.env.PORT, () => console.log("server running on port", process.env.PORT)))

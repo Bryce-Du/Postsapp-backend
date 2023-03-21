@@ -6,8 +6,10 @@ const {
     deletePost,
     updatePost
 } = require('../controllers/PostController')
+const requireAuth = require('../middleware/requireAuth')
 
 const router = express.Router()
+// router.use(requireAuth)
 
 // index
 router.get('/', getPosts)
@@ -16,7 +18,7 @@ router.get('/', getPosts)
 router.get('/:id', getPost)
 
 //post
-router.post('/', createPost)
+router.post('/', requireAuth, createPost)
 
 //delete
 router.delete('/:id', deletePost)

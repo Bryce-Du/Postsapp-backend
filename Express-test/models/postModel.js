@@ -9,7 +9,17 @@ const postSchema = new Schema({
     body: {
         type: String,
         required: true
+    },
+    edited: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
-}, {timestamps: true})
+}, { timestamps: true })
 
 module.exports = mongoose.model('Post', postSchema)

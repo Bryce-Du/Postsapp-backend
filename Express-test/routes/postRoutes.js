@@ -6,10 +6,11 @@ const {
     deletePost,
     updatePost
 } = require('../controllers/PostController')
-const requireAuth = require('../middleware/requireAuth')
+const requireLogin = require('../middleware/requireLogin')
+const requirePostAuthor = require('../middleware/requirePostAuthor')
 
 const router = express.Router()
-// router.use(requireAuth)
+// router.use(requireLogin)
 
 // index
 router.get('/', getPosts)
@@ -18,12 +19,12 @@ router.get('/', getPosts)
 router.get('/:id', getPost)
 
 //post
-router.post('/', requireAuth, createPost)
+router.post('/', requireLogin, createPost)
 
 //delete
-router.delete('/:id', deletePost)
+router.delete('/:id', requirePostAuthor, deletePost)
 
 //update
-router.patch('/:id', updatePost)
+router.patch('/:id', requirePostAuthor, updatePost)
 
 module.exports = router

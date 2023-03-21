@@ -13,14 +13,18 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 7
+    },
+    name: {
+        type: String
+    },
+    pronouns: {
+        type: [String],
+        enum: ["he/him", "she/her", "they/them"]
+    },
+    location: {
+        type: String
     }
 })
-
-// userSchema.pre('save', async function (next) {
-//     const salt = await bcrypt.genSalt()
-//     this.password = await bcrypt.hash(this.password, salt)
-//     next();
-// })
 
 userSchema.statics.signup = async function ({ email, password }) {
     //validations

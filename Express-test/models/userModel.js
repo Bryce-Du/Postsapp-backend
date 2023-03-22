@@ -18,8 +18,7 @@ const userSchema = new mongoose.Schema({
         type: String
     },
     pronouns: {
-        type: [String],
-        enum: ["he/him", "she/her", "they/them"]
+        type: String,
     },
     location: {
         type: String

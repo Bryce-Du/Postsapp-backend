@@ -1,6 +1,6 @@
-const Post = require('../models/post');
+const Post = require('../models/postModel');
 
-const isPostAuthorized = async (req, res, next) => {
+const requirePostAuthor = async (req, res, next) => {
   try {
     const post = await Post.findById(req.params.postId);
 
@@ -18,4 +18,4 @@ const isPostAuthorized = async (req, res, next) => {
   }
 };
 
-module.exports = isPostAuthorized;
+module.exports = requirePostAuthor;

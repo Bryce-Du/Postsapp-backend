@@ -15,7 +15,7 @@ const getUser = async (req, res) => {
     return res.status(404).json({ error: "User does not exist" })
   }
 
-  const user = await User.findById(id)
+  const user = await User.findById(id).select('-password');
 
   if (!user) {
     return res.status(404).json({ error: "User does not exist" })
@@ -44,8 +44,8 @@ const updateUser = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ error: "User does not exist" })
   }
-
-  const user = await User.findOneAndUpdate({ _id: id }, { ...req.body })
+  console.log(req.body)
+  const user = await User.findOneAndUpdate({ _id: id }, { ...req.body.editedUserData })
   if (!user) {
     return res.status(404).json({ error: "User does not exist" })
 

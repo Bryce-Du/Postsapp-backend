@@ -6,7 +6,7 @@ const requireAuth = async (req, res, next) => {
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-    if (user._id.toString() !== req.body.editedUserData._id.toString()) {
+    if (user._id.toString() !== req.body._id.toString()) {
       return res.status(401).json({ message: 'Unauthorized' });
     }
 

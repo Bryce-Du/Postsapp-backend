@@ -45,7 +45,7 @@ const updateUser = async (req, res) => {
     return res.status(404).json({ error: "User does not exist" })
   }
   console.log(req.body)
-  const user = await User.findOneAndUpdate({ _id: id }, { ...req.body.editedUserData })
+  const user = await User.findOneAndUpdate({ _id: id }, { ...req.body })
   if (!user) {
     return res.status(404).json({ error: "User does not exist" })
 
